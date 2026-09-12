@@ -1,3 +1,5 @@
+import { MapPin } from "lucide-react";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col items-center justify-center gap-4 px-4">
@@ -15,6 +17,18 @@ export default function Home() {
         <span className="block">A OnDescarte conecta cidadãos aos pontos autorizados de coleta em Porto Alegre.</span>
         <span className="block">Descarte plástico, vidro, papel, eletrônicos e óleo de forma correta e sem complicações.</span>
       </p>
+
+      <div className="flex items-center bg-white rounded-full shadow-md p-2 max-w-xl w-full">
+        <MapPin className="text-emerald-700 ml-2" size={20} />
+        <input
+          type="text"
+          placeholder="Digite seu endereço ou CEP (ex: Moinhos de Vento, RS)"
+          className="flex-1 outline-none px-3 text-sm text-gray-700 placeholder-gray-400"
+        />
+        <button className="bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors">
+          Buscar Pontos
+        </button>
+      </div>
 
     </main>
   );
