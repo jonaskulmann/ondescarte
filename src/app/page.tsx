@@ -6,6 +6,16 @@ export default function Home() {
         DESCARTE CONSCIENTE EM SEU BAIRRO
       </div>
 
+      <h1 className="font-bold text-teal-900 text-center leading-tight">
+        <span className="block text-6xl md:text-7xl">Encontre pontos de coleta</span>
+        <span className="block text-6xl md:text-7xl">de reciclagem perto de você!</span>
+      </h1>
+
+      <p className="text-center text-gray-500 text-lg max-w-2xl mt-4">
+        <span className="block">A OnDescarte conecta cidadãos aos pontos autorizados de coleta em Porto Alegre.</span>
+        <span className="block">Descarte plástico, vidro, papel, eletrônicos e óleo de forma correta e sem complicações.</span>
+      </p>
+
     </main>
   );
 }
