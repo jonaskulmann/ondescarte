@@ -9,3 +9,10 @@ const icon = L.icon({
   iconSize: [25, 41],
   iconAnchor: [12, 41],
 })
+
+const limitesPortoAlegre: [[number, number], [number, number]] = [
+  [-30.27, -51.30],
+  [-29.93, -51.02],
+]
+
+const centroPortoAlegre: [number, number] = [-30.0346, -51.2177]
