@@ -1,7 +1,30 @@
-import { MapPin } from "lucide-react";
+"use client"
+
+import { useState } from "react"
+import { MapPin } from "lucide-react"
 import MapSection from "./components/MapSection"
+import { getGeocodificarEndereco } from "./actions/geocoding"
+
+type Ponto = {
+  lat: number
+  lon: number
+}
 
 export default function Home() {
+  const [endereco, setEndereco] = useState("")
+  const [pontoBuscado, setPontoBuscado] = useState<Ponto | null>(null)
+
+  async function handleBuscarPontos() {
+    const resultado = await getGeocodificarEndereco(endereco)
+
+    if (!resultado) {
+      alert("Endereço não encontrado")
+      return
+    }
+
+    setPontoBuscado(resultado)
+  }
+
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col items-center justify-center gap-4 px-4">
 
@@ -23,15 +46,20 @@ export default function Home() {
         <MapPin className="text-emerald-700 ml-2" size={20} />
         <input
           type="text"
+          value={endereco}
+          onChange={(e) => setEndereco(e.target.value)}
           placeholder="Digite seu endereço ou CEP (ex: Moinhos de Vento, RS)"
           className="flex-1 outline-none px-3 text-sm text-gray-700 placeholder-gray-400"
         />
-        <button className="bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors">
+        <button
+          onClick={handleBuscarPontos}
+          className="bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors"
+        >
           Buscar Pontos
         </button>
       </div>
 
-      <MapSection />
+      <MapSection pontoBuscado={pontoBuscado} />
 
     </main>
   );
