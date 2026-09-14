@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import MapSection from "./components/MapSection"
 
 export default function Home() {
   return (
@@ -29,6 +30,8 @@ export default function Home() {
           Buscar Pontos
         </button>
       </div>
+
+      <MapSection />
 
     </main>
   );
