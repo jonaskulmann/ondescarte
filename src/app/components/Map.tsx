@@ -39,16 +39,13 @@ function RecenterMap({ pontoBuscado }: { pontoBuscado: Ponto | null }) {
 export default function Mapa({ pontoBuscado }: MapaProps) {
   return (
     <MapContainer
-      center={centroPortoAlegre}
+      center={[-30.0346, -51.2177]}
       zoom={13}
-      minZoom={12}
-      maxBounds={limitesPortoAlegre}
-      maxBoundsViscosity={1.0}
       style={{ height: "500px", width: "100%" }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <Marker position={centroPortoAlegre} icon={icon}>
+      <Marker position={[-30.0346, -51.2177]} icon={icon}>
         <Popup>Porto Alegre</Popup>
       </Marker>
 
