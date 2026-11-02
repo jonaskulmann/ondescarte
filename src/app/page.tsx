@@ -59,7 +59,9 @@ export default function Home() {
         </button>
       </div>
 
+      <div className="w-full max-w-4xl mx-auto">
       <MapSection pontoBuscado={pontoBuscado} />
+      </div>
 
     </main>
   );
