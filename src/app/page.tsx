@@ -60,8 +60,8 @@ export default function Home() {
       </div>
        
       <hr className="w-full max-w-6xl mx-auto my-10 border-gray-300" />
-      
-      <div className="w-full max-w-4xl mx-auto">
+
+      <div className="w-full max-w-6xl mx-auto">
       <MapSection pontoBuscado={pontoBuscado} />
       </div>
 
