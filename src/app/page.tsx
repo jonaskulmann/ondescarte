@@ -58,7 +58,9 @@ export default function Home() {
           Buscar Pontos
         </button>
       </div>
-
+       
+      <hr className="w-full max-w-6xl mx-auto my-10 border-gray-300" />
+      
       <div className="w-full max-w-4xl mx-auto">
       <MapSection pontoBuscado={pontoBuscado} />
       </div>
