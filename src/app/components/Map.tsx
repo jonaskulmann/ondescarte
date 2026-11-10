@@ -12,7 +12,7 @@ type Ponto = {
 }
 
 type MapaProps = {
-  pontoBuscado: Ponto | null
+  alvo: Ponto | null
   pontos: PontoColeta[]
   aoSelecionar: (ponto: PontoColeta) => void
 }
@@ -31,19 +31,19 @@ const limitesPortoAlegre: L.LatLngBoundsExpression = [
   [-29.92, -51.01],
 ]
 
-function MoverMapa({ ponto }: { ponto: Ponto | null }) {
+function MoverMapa({ alvo }: { alvo: Ponto | null }) {
   const mapa = useMap()
 
   useEffect(() => {
-    if (ponto) {
-      mapa.flyTo([ponto.lat, ponto.lon], 15)
+    if (alvo) {
+      mapa.flyTo([alvo.lat, alvo.lon], 18, { duration: 1.5 })
     }
-  }, [ponto, mapa])
+  }, [alvo, mapa])
 
   return null
 }
 
-export default function Mapa({ pontoBuscado, pontos, aoSelecionar }: MapaProps) {
+export default function Mapa({ alvo, pontos, aoSelecionar }: MapaProps) {
   return (
     <MapContainer
       center={[-30.0346, -51.2177]}
@@ -57,7 +57,7 @@ export default function Mapa({ pontoBuscado, pontos, aoSelecionar }: MapaProps) 
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
-      <MoverMapa ponto={pontoBuscado} />
+      <MoverMapa alvo={alvo} />
       {pontos.map((ponto) => (
         <Marker
           key={ponto.id}

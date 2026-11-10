@@ -31,10 +31,20 @@ function acharMaisProximo(lista: PontoColeta[]): PontoColeta {
 
 export default function MapSection({ pontoBuscado, pontos }: MapSectionProps) {
   const [pontoSelecionado, setPontoSelecionado] = useState<PontoColeta | null>(null)
+  const [alvoMapa, setAlvoMapa] = useState<Ponto | null>(null)
 
   useEffect(() => {
-    if (pontoBuscado) {
-      setPontoSelecionado(pontos.length > 0 ? acharMaisProximo(pontos) : null)
+    if (!pontoBuscado) {
+      return
+    }
+
+    if (pontos.length > 0) {
+      const maisProximo = acharMaisProximo(pontos)
+      setPontoSelecionado(maisProximo)
+      setAlvoMapa(maisProximo)
+    } else {
+      setPontoSelecionado(null)
+      setAlvoMapa(pontoBuscado)
     }
   }, [pontoBuscado, pontos])
 
@@ -42,7 +52,7 @@ export default function MapSection({ pontoBuscado, pontos }: MapSectionProps) {
     <section style={{ padding: "48px 0" }}>
       <div className="relative">
         <Mapa
-          pontoBuscado={pontoBuscado}
+          alvo={alvoMapa}
           pontos={pontos}
           aoSelecionar={setPontoSelecionado}
         />
