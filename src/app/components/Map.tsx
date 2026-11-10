@@ -25,6 +25,11 @@ const iconePadrao = L.icon({
   shadowSize: [41, 41],
 })
 
+const limitesPortoAlegre: L.LatLngBoundsExpression = [
+  [-30.28, -51.3],
+  [-29.92, -51.01],
+]
+
 function MoverMapa({ ponto }: { ponto: Ponto | null }) {
   const mapa = useMap()
 
@@ -42,6 +47,9 @@ export default function Mapa({ pontoBuscado, aoSelecionar }: MapaProps) {
     <MapContainer
       center={[-30.0346, -51.2177]}
       zoom={13}
+      minZoom={11}
+      maxBounds={limitesPortoAlegre}
+      maxBoundsViscosity={1.0}
       style={{ height: "500px", width: "100%" }}
     >
       <TileLayer
