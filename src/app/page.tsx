@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { MapPin } from "lucide-react"
 import MapSection from "./components/MapSection"
-import { PontoColeta, pontosColeta, converterPonto } from "./data/pontos"
+import { PontoColeta, converterPonto } from "./tipos"
 import { buscarPontosProximos } from "./actions/pontos"
 
 type Ponto = {
@@ -23,7 +23,7 @@ function estaEmPortoAlegre(ponto: Ponto) {
 export default function Home() {
   const [endereco, setEndereco] = useState("")
   const [pontoBuscado, setPontoBuscado] = useState<Ponto | null>(null)
-  const [pontos, setPontos] = useState<PontoColeta[]>(pontosColeta)
+  const [pontos, setPontos] = useState<PontoColeta[]>([])
 
   async function handleBuscarPontos() {
     const resultado = await buscarPontosProximos(endereco)

@@ -1,4 +1,4 @@
-import { PontoColeta } from "../data/pontos"
+import { PontoColeta } from "../tipos"
 
 type CaixaInfoProps = {
   ponto: PontoColeta | null

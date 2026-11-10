@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import CaixaInfo from "./CaixaInfo"
-import { PontoColeta } from "../data/pontos"
+import { PontoColeta } from "../tipos"
 
 const Mapa = dynamic(() => import("./Map"), { ssr: false })
 

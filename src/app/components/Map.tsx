@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet"
 import { useEffect } from "react"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
-import { PontoColeta } from "../data/pontos"
+import { PontoColeta } from "../tipos"
 
 type Ponto = {
   lat: number
