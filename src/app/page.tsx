@@ -10,6 +10,15 @@ type Ponto = {
   lon: number
 }
 
+function estaEmPortoAlegre(ponto: Ponto) {
+  return (
+    ponto.lat >= -30.28 &&
+    ponto.lat <= -29.92 &&
+    ponto.lon >= -51.3 &&
+    ponto.lon <= -51.01
+  )
+}
+
 export default function Home() {
   const [endereco, setEndereco] = useState("")
   const [pontoBuscado, setPontoBuscado] = useState<Ponto | null>(null)
@@ -19,6 +28,11 @@ export default function Home() {
 
     if (!resultado) {
       alert("Endereço não encontrado")
+      return
+    }
+
+    if (!estaEmPortoAlegre(resultado)) {
+      alert("Esse endereço fica fora de Porto Alegre")
       return
     }
 
