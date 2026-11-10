@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { MapPin } from "lucide-react"
 import MapSection from "./components/MapSection"
-import { getGeocodificarEndereco } from "./actions/geocoding"
+import { PontoColeta, pontosColeta, converterPonto } from "./data/pontos"
+import { buscarPontosProximos } from "./actions/pontos"
 
 type Ponto = {
   lat: number
@@ -22,26 +23,31 @@ function estaEmPortoAlegre(ponto: Ponto) {
 export default function Home() {
   const [endereco, setEndereco] = useState("")
   const [pontoBuscado, setPontoBuscado] = useState<Ponto | null>(null)
+  const [pontos, setPontos] = useState<PontoColeta[]>(pontosColeta)
 
   async function handleBuscarPontos() {
-    const resultado = await getGeocodificarEndereco(endereco)
+    const resultado = await buscarPontosProximos(endereco)
 
-    if (!resultado) {
-      alert("Endereço não encontrado")
+    if (!resultado.origem) {
+      alert(resultado.erro)
       return
     }
 
-    if (!estaEmPortoAlegre(resultado)) {
+    if (!estaEmPortoAlegre(resultado.origem)) {
       alert("Esse endereço fica fora de Porto Alegre")
       return
     }
 
-    setPontoBuscado(resultado)
+    setPontoBuscado(resultado.origem)
+    setPontos(resultado.pontos.map(converterPonto))
+
+    if (resultado.erro) {
+      alert(resultado.erro)
+    }
   }
 
   return (
-     <main className="min-h-screen bg-gray-100 flex flex-col items-center justify-center gap-4 px-4 pt-16">
-
+    <main className="min-h-screen bg-gray-100 flex flex-col items-center justify-center gap-4 px-4 pt-16">
       <div className="inline-block rounded-full border border-emerald-600 px-4 py-1.5 text-emerald-700 text-[11px] font-semibold tracking-widest">
         DESCARTE CONSCIENTE EM SEU BAIRRO
       </div>
@@ -72,13 +78,12 @@ export default function Home() {
           Buscar Pontos
         </button>
       </div>
-       
-      <hr className="w-full max-w-6xl mx-auto my-10 border-gray-300" />
+
+      <hr className="w-full max-w-6xl mx-auto my-6 border-gray-300" />
 
       <div className="w-full max-w-6xl mx-auto">
-      <MapSection pontoBuscado={pontoBuscado} />
+        <MapSection pontoBuscado={pontoBuscado} pontos={pontos} />
       </div>
-
     </main>
-  );
+  )
 }
