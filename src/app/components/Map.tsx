@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet"
 import { useEffect } from "react"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
-import { pontosColeta } from "../data/pontos"
+import { pontosColeta, PontoColeta } from "../data/pontos"
 
 type Ponto = {
   lat: number
@@ -13,6 +13,7 @@ type Ponto = {
 
 type MapaProps = {
   pontoBuscado: Ponto | null
+  aoSelecionar: (ponto: PontoColeta) => void
 }
 
 const iconePadrao = L.icon({
@@ -36,7 +37,7 @@ function MoverMapa({ ponto }: { ponto: Ponto | null }) {
   return null
 }
 
-export default function Mapa({ pontoBuscado }: MapaProps) {
+export default function Mapa({ pontoBuscado, aoSelecionar }: MapaProps) {
   return (
     <MapContainer
       center={[-30.0346, -51.2177]}
@@ -53,6 +54,7 @@ export default function Mapa({ pontoBuscado }: MapaProps) {
           key={ponto.id}
           position={[ponto.lat, ponto.lon]}
           icon={iconePadrao}
+          eventHandlers={{ click: () => aoSelecionar(ponto) }}
         />
       ))}
     </MapContainer>

@@ -44,7 +44,7 @@ export default function MapSection({ pontoBuscado }: MapSectionProps) {
   return (
     <section style={{ padding: "48px 0" }}>
       <div className="relative">
-        <Mapa pontoBuscado={pontoBuscado} />
+        <Mapa pontoBuscado={pontoBuscado} aoSelecionar={setPontoSelecionado} />
         <CaixaInfo ponto={pontoSelecionado} />
       </div>
     </section>
