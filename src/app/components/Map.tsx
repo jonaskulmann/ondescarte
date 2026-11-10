@@ -1,21 +1,9 @@
 "use client"
 
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet"
+import { useEffect } from "react"
 import "leaflet/dist/leaflet.css"
-import L from "leaflet"
-
-const icon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-})
-
-const limitesPortoAlegre: [[number, number], [number, number]] = [
-  [-30.27, -51.30],
-  [-29.93, -51.02],
-]
-
-const centroPortoAlegre: [number, number] = [-30.0346, -51.2177]
+import { pontosColeta, PontoColeta } from "../data/pontos"
 
 type Ponto = {
   lat: number
@@ -24,34 +12,42 @@ type Ponto = {
 
 type MapaProps = {
   pontoBuscado: Ponto | null
+  pontoSelecionado: PontoColeta | null
+  aoSelecionar: (ponto: PontoColeta) => void
 }
 
-function RecenterMap({ pontoBuscado }: { pontoBuscado: Ponto | null }) {
-  const map = useMap()
+function MoverMapa({ ponto }: { ponto: Ponto | null }) {
+  const mapa = useMap()
 
-  if (pontoBuscado) {
-    map.setView([pontoBuscado.lat, pontoBuscado.lon], 15)
-  }
+  useEffect(() => {
+    if (ponto) {
+      mapa.flyTo([ponto.lat, ponto.lon], 15)
+    }
+  }, [ponto, mapa])
 
   return null
 }
 
-export default function Mapa({ pontoBuscado }: MapaProps) {
+export default function Mapa({ pontoBuscado, pontoSelecionado, aoSelecionar }: MapaProps) {
   return (
     <MapContainer
       center={[-30.0346, -51.2177]}
       zoom={13}
       style={{ height: "500px", width: "100%" }}
     >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-      {pontoBuscado && (
-        <Marker position={[pontoBuscado.lat, pontoBuscado.lon]} icon={icon}>
-          <Popup>Endereço buscado</Popup>
-        </Marker>
-      )}
-
-      <RecenterMap pontoBuscado={pontoBuscado} />
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution="&copy; OpenStreetMap contributors"
+      />
+      <MoverMapa ponto={pontoBuscado} />
+      <MoverMapa ponto={pontoSelecionado} />
+      {pontosColeta.map((ponto) => (
+        <Marker
+          key={ponto.id}
+          position={[ponto.lat, ponto.lon]}
+          eventHandlers={{ click: () => aoSelecionar(ponto) }}
+        />
+      ))}
     </MapContainer>
   )
 }
