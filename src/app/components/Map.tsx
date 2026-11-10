@@ -2,8 +2,9 @@
 
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet"
 import { useEffect } from "react"
+import L from "leaflet"
 import "leaflet/dist/leaflet.css"
-import { pontosColeta, PontoColeta } from "../data/pontos"
+import { pontosColeta } from "../data/pontos"
 
 type Ponto = {
   lat: number
@@ -12,9 +13,16 @@ type Ponto = {
 
 type MapaProps = {
   pontoBuscado: Ponto | null
-  pontoSelecionado: PontoColeta | null
-  aoSelecionar: (ponto: PontoColeta) => void
 }
+
+const iconePadrao = L.icon({
+  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  shadowSize: [41, 41],
+})
 
 function MoverMapa({ ponto }: { ponto: Ponto | null }) {
   const mapa = useMap()
@@ -28,7 +36,7 @@ function MoverMapa({ ponto }: { ponto: Ponto | null }) {
   return null
 }
 
-export default function Mapa({ pontoBuscado, pontoSelecionado, aoSelecionar }: MapaProps) {
+export default function Mapa({ pontoBuscado }: MapaProps) {
   return (
     <MapContainer
       center={[-30.0346, -51.2177]}
@@ -40,12 +48,11 @@ export default function Mapa({ pontoBuscado, pontoSelecionado, aoSelecionar }: M
         attribution="&copy; OpenStreetMap contributors"
       />
       <MoverMapa ponto={pontoBuscado} />
-      <MoverMapa ponto={pontoSelecionado} />
       {pontosColeta.map((ponto) => (
         <Marker
           key={ponto.id}
           position={[ponto.lat, ponto.lon]}
-          eventHandlers={{ click: () => aoSelecionar(ponto) }}
+          icon={iconePadrao}
         />
       ))}
     </MapContainer>

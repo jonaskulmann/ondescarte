@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import CaixaInfo from "./CaixaInfo"
-import { PontoColeta } from "../data/pontos"
+import { PontoColeta, pontosColeta } from "../data/pontos"
 
 const Mapa = dynamic(() => import("./Map"), { ssr: false })
 
@@ -16,19 +16,35 @@ type MapSectionProps = {
   pontoBuscado: Ponto | null
 }
 
+function acharMaisProximo(busca: Ponto): PontoColeta {
+  let maisProximo = pontosColeta[0]
+  let menorDistancia = Infinity
+
+  pontosColeta.forEach((ponto) => {
+    const distancia = Math.hypot(ponto.lat - busca.lat, ponto.lon - busca.lon)
+
+    if (distancia < menorDistancia) {
+      menorDistancia = distancia
+      maisProximo = ponto
+    }
+  })
+
+  return maisProximo
+}
+
 export default function MapSection({ pontoBuscado }: MapSectionProps) {
   const [pontoSelecionado, setPontoSelecionado] = useState<PontoColeta | null>(null)
 
+  useEffect(() => {
+    if (pontoBuscado) {
+      setPontoSelecionado(acharMaisProximo(pontoBuscado))
+    }
+  }, [pontoBuscado])
+
   return (
     <section style={{ padding: "48px 0" }}>
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="flex-1 min-w-0">
-          <Mapa
-            pontoBuscado={pontoBuscado}
-            pontoSelecionado={pontoSelecionado}
-            aoSelecionar={setPontoSelecionado}
-          />
-        </div>
+      <div className="relative">
+        <Mapa pontoBuscado={pontoBuscado} />
         <CaixaInfo ponto={pontoSelecionado} />
       </div>
     </section>
