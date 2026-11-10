@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import CaixaInfo from "./CaixaInfo"
-import { PontoColeta } from "../data/pontos"
+import { PontoColeta } from "../tipos"
 
 const Mapa = dynamic(() => import("./Map"), { ssr: false })
 
@@ -17,15 +17,11 @@ type MapSectionProps = {
   pontos: PontoColeta[]
 }
 
-function acharMaisProximo(busca: Ponto, lista: PontoColeta[]): PontoColeta {
+function acharMaisProximo(lista: PontoColeta[]): PontoColeta {
   let maisProximo = lista[0]
-  let menorDistancia = Infinity
 
   lista.forEach((ponto) => {
-    const distancia = Math.hypot(ponto.lat - busca.lat, ponto.lon - busca.lon)
-
-    if (distancia < menorDistancia) {
-      menorDistancia = distancia
+    if (ponto.distanciaKm < maisProximo.distanciaKm) {
       maisProximo = ponto
     }
   })
@@ -38,7 +34,7 @@ export default function MapSection({ pontoBuscado, pontos }: MapSectionProps) {
 
   useEffect(() => {
     if (pontoBuscado) {
-      setPontoSelecionado(pontos.length > 0 ? acharMaisProximo(pontoBuscado, pontos) : null)
+      setPontoSelecionado(pontos.length > 0 ? acharMaisProximo(pontos) : null)
     }
   }, [pontoBuscado, pontos])
 

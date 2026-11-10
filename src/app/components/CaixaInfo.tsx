@@ -1,4 +1,4 @@
-import { PontoColeta } from "../data/pontos"
+import { PontoColeta } from "../tipos"
 
 type CaixaInfoProps = {
   ponto: PontoColeta | null
@@ -18,18 +18,31 @@ export default function CaixaInfo({ ponto }: CaixaInfoProps) {
       {ponto && (
         <>
           <h3 className="text-lg font-semibold text-emerald-800">{ponto.nome}</h3>
-          <p className="text-sm text-gray-500 mt-1">{ponto.bairro}, Porto Alegre</p>
-          <p className="text-xs text-gray-400 mt-4 mb-2">Aceita</p>
-          <div className="flex flex-wrap gap-2">
-            {ponto.tipos.map((tipo) => (
-              <span
-                key={tipo}
-                className="bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full"
-              >
-                {tipo}
-              </span>
-            ))}
-          </div>
+          <p className="text-sm text-gray-500 mt-1">{ponto.endereco}</p>
+
+          {ponto.descricao !== "" && (
+            <p className="text-sm text-gray-600 mt-3">{ponto.descricao}</p>
+          )}
+
+          {ponto.tipos.length > 0 && (
+            <>
+              <p className="text-xs text-gray-400 mt-4 mb-2">Aceita</p>
+              <div className="flex flex-wrap gap-2">
+                {ponto.tipos.map((tipo) => (
+                  <span
+                    key={tipo}
+                    className="bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >
+                    {tipo}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
+
+          <p className="text-xs text-gray-400 mt-4">
+            A {ponto.distanciaKm.toFixed(1)} km do endereço buscado
+          </p>
         </>
       )}
     </div>
