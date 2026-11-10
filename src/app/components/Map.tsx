@@ -45,10 +45,6 @@ export default function Mapa({ pontoBuscado }: MapaProps) {
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <Marker position={[-30.0346, -51.2177]} icon={icon}>
-        <Popup>Porto Alegre</Popup>
-      </Marker>
-
       {pontoBuscado && (
         <Marker position={[pontoBuscado.lat, pontoBuscado.lon]} icon={icon}>
           <Popup>Endereço buscado</Popup>
