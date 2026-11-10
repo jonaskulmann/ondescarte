@@ -36,7 +36,7 @@ function MoverMapa({ alvo }: { alvo: Ponto | null }) {
 
   useEffect(() => {
     if (alvo) {
-      mapa.flyTo([alvo.lat, alvo.lon], 18, { duration: 1.5 })
+      mapa.flyTo([alvo.lat, alvo.lon], 17, { duration: 1.5 })
     }
   }, [alvo, mapa])
 
