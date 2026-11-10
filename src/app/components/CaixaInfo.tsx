@@ -9,7 +9,7 @@ export default function CaixaInfo({ ponto }: CaixaInfoProps) {
 
   return (
     <div
-      className={`absolute top-4 right-4 left-4 md:left-auto md:w-72 z-[1000] bg-white rounded-2xl shadow-md p-5 transition-all duration-700 ease-out ${
+      className={`absolute top-4 right-4 left-4 md:left-auto md:w-72 z-1000 bg-white rounded-2xl shadow-md p-5 transition-all duration-700 ease-out ${
         visivel
           ? "opacity-100 translate-x-0"
           : "opacity-0 translate-x-10 pointer-events-none"
