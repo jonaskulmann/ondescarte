@@ -5,6 +5,7 @@ import { MapPin } from "lucide-react"
 import MapSection from "./components/MapSection"
 import { PontoColeta, converterPonto } from "./tipos"
 import { buscarPontosProximos } from "./actions/pontos"
+import ComoFunciona from "./components/ComoFunciona"
 
 type Ponto = {
   lat: number
@@ -89,6 +90,7 @@ export default function Home() {
           <MapSection pontoBuscado={pontoBuscado} pontos={pontos} />
         </div>
       </section>
+            <ComoFunciona />
     </main>
   )
 }
