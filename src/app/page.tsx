@@ -8,6 +8,7 @@ import { buscarPontosProximos } from "./actions/pontos"
 import ComoFunciona from "./components/ComoFunciona"
 import Categorias from "./components/Categorias"
 import SobreNos from "./components/SobreNos"
+import Rodape from "./components/Rodape"
 
 type Ponto = {
   lat: number
@@ -95,6 +96,7 @@ export default function Home() {
             <ComoFunciona />
                   <Categorias />
                         <SobreNos />
+                              <Rodape />
     </main>
   )
 }
