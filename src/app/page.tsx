@@ -6,6 +6,7 @@ import MapSection from "./components/MapSection"
 import { PontoColeta, converterPonto } from "./tipos"
 import { buscarPontosProximos } from "./actions/pontos"
 import ComoFunciona from "./components/ComoFunciona"
+import Categorias from "./components/Categorias"
 
 type Ponto = {
   lat: number
@@ -91,6 +92,7 @@ export default function Home() {
         </div>
       </section>
             <ComoFunciona />
+                  <Categorias />
     </main>
   )
 }
