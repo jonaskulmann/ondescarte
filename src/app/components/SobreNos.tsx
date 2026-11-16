@@ -1,6 +1,6 @@
 const marcos = [
   {
-    titulo: "O primeiro teste",
+    titulo: "Saindo do papel",
     texto:
       "Tudo começou com um protótipo simples, só pra provar que o site conseguia conversar com um servidor.",
   },
@@ -15,17 +15,17 @@ const marcos = [
       "Com Leaflet e OpenStreetMap, o mapa ficou preso à cidade, com pins e uma caixa que mostra o que cada ponto aceita.",
   },
   {
-    titulo: "Pontos de verdade",
+    titulo: "Pontos de coleta",
     texto:
-      "Com a ajuda de um amigo, a busca passou a consultar um banco de dados e trazer os pontos mais próximos de cada endereço.",
+      "A busca passou a consultar um banco de dados e trazer os pontos mais próximos de cada endereço buscado.",
   },
 ]
 
 const equipe = [
   {
-    nome: "Gustavo",
-    papel: "Site, mapa e visual",
-    detalhe: "Estudante de Desenvolvimento Full Stack na +PraTi, em Porto Alegre.",
+    nome: "Gustavo Mattos",
+    papel: " Front-end e mapa ",
+    detalhe: "Responsável pelo design e implementação do site.",
   },
   {
     nome: "Jonas Kulmann",
@@ -47,7 +47,7 @@ export default function SobreNos() {
               Descartar certo não deveria dar trabalho
             </h2>
             <p className="mt-6 text-lg text-emerald-50/80">
-              A OnDescarte nasceu de uma pergunta simples: onde eu levo isso? Os pontos de coleta existem, mas achar o mais perto de casa nem sempre é fácil.
+              A OnDescarte nasceu de uma pergunta simples: Onde eu levo isso? Os pontos de coleta existem, mas achar o mais perto de casa nem sempre é fácil.
             </p>
             <p className="mt-4 text-lg text-emerald-50/80">
               Por isso juntamos tudo num mapa só, feito pra Porto Alegre, que diz onde ir e o que cada ponto aceita.
