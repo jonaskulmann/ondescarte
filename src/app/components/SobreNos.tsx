@@ -1,23 +1,23 @@
 const marcos = [
   {
-    titulo: "Saindo do papel",
+    titulo: "",
     texto:
-      "Tudo começou com um protótipo simples, só pra provar que o site conseguia conversar com um servidor.",
+      "",
   },
   {
-    titulo: "Uma base mais firme",
+    titulo: "",
     texto:
-      "Reconstruímos o site em Next.js e TypeScript, pensando em crescer sem virar bagunça.",
+      "",
   },
   {
-    titulo: "O mapa de Porto Alegre",
+    titulo: "",
     texto:
-      "Com Leaflet e OpenStreetMap, o mapa ficou preso à cidade, com pins e uma caixa que mostra o que cada ponto aceita.",
+      "",
   },
   {
-    titulo: "Pontos de coleta",
+    titulo: "",
     texto:
-      "A busca passou a consultar um banco de dados e trazer os pontos mais próximos de cada endereço buscado.",
+      "",
   },
 ]
 
@@ -55,9 +55,6 @@ export default function SobreNos() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest text-emerald-300">
-              COMO CHEGAMOS AQUI
-            </p>
             <ol className="mt-6 space-y-10 border-l border-emerald-700 pl-8">
               {marcos.map((marco) => (
                 <li key={marco.titulo} className="relative">
