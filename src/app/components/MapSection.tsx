@@ -38,12 +38,15 @@ export default function MapSection({ pontoBuscado, pontos }: MapSectionProps) {
     }
   }, [pontoBuscado, pontos])
 
+  const pontosVisiveis = pontoSelecionado ? [pontoSelecionado] : []
+
   return (
     <section style={{ padding: "48px 0" }}>
       <div className="relative">
         <Mapa
-          pontoBuscado={pontoBuscado}
+          destino={pontoSelecionado}
           pontos={pontos}
+          selecionadoId={pontoSelecionado?.id ?? null}
           aoSelecionar={setPontoSelecionado}
         />
         <CaixaInfo ponto={pontoSelecionado} />
