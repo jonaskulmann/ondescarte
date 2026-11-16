@@ -28,7 +28,7 @@ const equipe = [
     detalhe: "Estudante de Desenvolvimento Full Stack na +PraTi, em Porto Alegre.",
   },
   {
-    nome: "Nome do seu amigo",
+    nome: "Jonas Kulmann",
     papel: "Busca e banco de dados",
     detalhe: "Criou a busca de pontos próximos que roda no Supabase.",
   },
@@ -55,18 +55,7 @@ export default function SobreNos() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest text-emerald-300">
-              COMO CHEGAMOS AQUI
-            </p>
-            <ol className="mt-6 space-y-10 border-l border-emerald-700 pl-8">
-              {marcos.map((marco) => (
-                <li key={marco.titulo} className="relative">
-                  <span className="absolute -left-9.75 top-1.5 h-3 w-3 rounded-full bg-emerald-300 ring-4 ring-teal-900" />
-                  <h3 className="text-xl font-bold">{marco.titulo}</h3>
-                  <p className="mt-1 text-emerald-50/80">{marco.texto}</p>
-                </li>
-              ))}
-            </ol>
+            
           </div>
         </div>
 

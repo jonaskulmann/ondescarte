@@ -16,9 +16,9 @@ const passos: Passo[] = [
   },
   {
     numero: "02",
-    titulo: "Veja o ponto mais perto",
+    titulo: "Veja o ponto mais próximo",
     texto:
-      "O mapa voa até o ponto de coleta mais próximo e abre uma caixa com o nome, o endereço, os materiais que ele aceita e a distância até você.",
+      "O mapa vai até o ponto de coleta mais próximo e abre uma caixa com o nome, o endereço, os materiais que ele aceita e a distância até você.",
     mostraExemplo: true,
   },
   {

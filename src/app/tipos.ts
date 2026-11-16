@@ -26,7 +26,7 @@ function separarMateriais(texto: string | null): string[] {
   }
 
   return texto
-    .split(/[,;|]/)
+    .split(/[;|]/)
     .map((item) => item.trim())
     .filter((item) => item !== "")
 }
