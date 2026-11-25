@@ -23,7 +23,17 @@ export async function buscarPontosProximos(endereco: string) {
 
   if (error || !data) {
     console.error(error)
-    return { erro: 'Erro ao buscar pontos.', origem, pontos: [] }
+    if (error?.message === 'TypeError: fetch failed' && error?.details.includes('Caused by: Error: getaddrinfo ENOTFOUND')) {
+      return {
+        erro: 'Não foi possível conectar ao servidor de banco de dados. Por favor, tente novamente mais tarde.',
+        origem,
+        pontos: [],
+      }
+    }
+    else {
+      return { erro: error, origem, pontos: [] }
+    }
+
   }
 
   if (data.length === 0) {
